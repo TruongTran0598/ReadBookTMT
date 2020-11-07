@@ -24,8 +24,8 @@ class LoginScreen extends State<Login> {
     AssetImage assetLogoFacebookImage = AssetImage('images/logo_facebook.png');
     Image imageLogoFacebook = Image(
       image: assetLogoFacebookImage,
-      width: 40,
-      height: 40,
+      width: 47,
+      height: 47,
     );
     return Container(child: imageLogoFacebook,);
   }
@@ -45,40 +45,48 @@ class LoginScreen extends State<Login> {
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 40, right: 30, left: 30),
-                child: RaisedButton(
-                  elevation: 6,
-                  color: Color(0xFF3a5b9b),
-                  child: Row(
-                    children: <Widget>[
-                      Container(
-                        padding: EdgeInsets.only(left: 30),
-                        child: getLogoFacebook(),
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(left: 30),
-                        child: Text(
-                          'Continue with Facebook',
-                          textDirection: TextDirection.ltr,
-                          style: TextStyle(
-                            color: Color(0xFFFFFFFF),
-                            decoration: TextDecoration.none,
-                          ),
-                          textScaleFactor: 1.3,
+                child: ButtonTheme(
+                  height: 55,
+                  minWidth: 200,
+                  child: RaisedButton(
+                    elevation: 6,
+                    color: Color(0xFF4C71CF),
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          padding: EdgeInsets.only(left: 20),
+                          child: getLogoFacebook(),
                         ),
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
+                        Container(
+                          padding: EdgeInsets.only(left: 20),
+                          child: Text(
+                            'Continue with Facebook',
+                            textDirection: TextDirection.ltr,
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              fontWeight: FontWeight.w400,
+                              color: Color(0xFFFFFFFF),
+                              decoration: TextDecoration.none,
+                            ),
+                            textScaleFactor: 1.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                    onPressed: () {
 
-                  },
-                  shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-                ),
+                    },
+                    shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
+                  ),
+                )
               ),
               Container(
-                padding: EdgeInsets.only(bottom: 10),
+                //padding: EdgeInsets.only(bottom: 10),
                 child: Text(
                   "Just one more step to get your book!",
                   style: TextStyle(
+                    fontFamily: 'HindSiliguri',
+                    fontWeight: FontWeight.w400,
                     color: Color(0xFF666666),
                     decoration: TextDecoration.none,
                   ),
@@ -87,6 +95,8 @@ class LoginScreen extends State<Login> {
               Text(
                 'Login with Facebook and dowload your free book.',
                 style: TextStyle(
+                  fontFamily: 'HindSiliguri',
+                  fontWeight: FontWeight.w400,
                   color: Color(0xFF666666),
                   decoration: TextDecoration.none,
                 ),
