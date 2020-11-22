@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Wrong extends StatefulWidget {
@@ -8,19 +9,41 @@ class Wrong extends StatefulWidget {
 }
 
 class WrongScreen extends State<Wrong> {
-
-  Widget getImgProHarryPotter() {
+  //---Image--------------------------------------------------------------
+  Widget _showImgProHarryPotter() {
     AssetImage assetImageProHarry = AssetImage("images/Harry_Potter.jpg");
     Image imageProHaryPotter = Image(
       image: assetImageProHarry,
-      height: 90,
-      width: 60,
+      height: 180,
+      width: 110,
+      fit: BoxFit.fill,
+    );
+
+    return Container(child: imageProHaryPotter,);
+  }
+
+  //---image cover
+  Widget _showImgCoverHarryPotter() {
+    AssetImage assetImageProHarry = AssetImage("images/Harry_Potter.jpg");
+    Image imageProHaryPotter = Image(
+      image: assetImageProHarry,
+      fit: BoxFit.cover,
     );
     return Container(child: imageProHaryPotter,);
   }
 
+  Widget getSadFaceWrong (){
+    AssetImage assetImageSadWrong = AssetImage("images/sad_face_wrong.png");
+    Image imageSadWrong = Image(
+      image: assetImageSadWrong,
+      height: 90,
+      width: 90,
+    );
+    return Container(child: imageSadWrong,);
+  }
+
   Widget starRate() {
-    AssetImage assetImageStarRate = AssetImage("images/Harry_Potter.jpg");
+    AssetImage assetImageStarRate = AssetImage("images/star_rate.png");
     Image imageStarRate = Image(
       image: assetImageStarRate,
       height: 20,
@@ -39,61 +62,123 @@ class WrongScreen extends State<Wrong> {
     return Container(child: imageWrongFace,);
   }
 
-  Widget buttonRetry() {
-    return Container(
-        child: ButtonTheme(
+  //---Image--------------------------------------------------------------
+
+  Widget _renderHeaderScreen() => Stack(
+    children: <Widget> [
+      // Positioned(
+      //   child: _showImgCoverHarryPotter(),
+      // ),
+
+      Positioned(
+        top: 120,
+        left: 40,
+        child: Container(
+          decoration: BoxDecoration (
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+            border: Border.all(
+              color: Colors.indigo,
+              width: 2,
+              style: BorderStyle.solid,
+            ),
+          ),
+          child: _showImgProHarryPotter(),
+        )
+      ),
+
+      Positioned(
+        top: 200,
+        left: 180,
+        child: Text(
+          "Harry Potter",
+          style: TextStyle (
+              color: Colors.blue,
+              fontSize: 27
+          ),
+        ),
+      ),
+
+      Positioned(
+        top: 235,
+        left: 180,
+        child: Text(
+          "J.K.Rowling",
+          style: TextStyle (
+              color: Colors.blue,
+          ),
+        ),
+      ),
+
+      Positioned(
+        top: 260,
+        left: 180,
+        child: Container(
+          child: Row(
+            children: <Widget>[
+              starRate(),
+              SizedBox(width: 7,),
+              Text("4.5"),
+            ],
+          ),
+        ),
+      )
+    ],
+  );
+
+  Widget _showButtonRetry() {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: ButtonTheme(
+        child: SizedBox(
+          width: double.infinity,
           child: RaisedButton(
             child: Text(
-              "Retry later"
+              "Retry later",
+              style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                color: Colors.white,
+              ),
             ),
             onPressed: (){
 
             },
           ),
-        ),
-    );
-  }
-
-  Widget textInforBook() {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Text(
-            "Harry Potter"
-          ),
-          Text(
-            "J.K.Rowling"
-          ),
-          Container(
-            child: Row(
-              children: <Widget>[
-                Container(
-                  child: starRate(),
-                ),
-                Container(
-                  child: Text("4.5"),
-                )
-              ],
-            ),
-          )
-        ],
+        )
       ),
     );
   }
 
-  Widget textWrong() {
+  Widget _showTextWrong() {
     return Container(
       child: Column(
         children: <Widget>[
-          getWrongFace(),
+          getSadFaceWrong(),
+          SizedBox(height: 15,),
           Text(
-            "So sorry."
+            "So sorry.",
+            style: TextStyle(
+              fontFamily: 'Inter',
+              fontSize: 18,
+              fontWeight: FontWeight.w500
+            ),
           ),
           Text(
-            "But can\'nt dowloald it right now."
+            "But can\'nt dowloald it right now.",
+            style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 18,
+                fontWeight: FontWeight.w500
+            ),
           ),
           Text(
-            "You can try again later"
+            "You can try again later",
+            style: TextStyle(
+                fontFamily: 'Inter',
+                fontSize: 18,
+                fontWeight: FontWeight.w500
+            ),
           ),
         ],
       ),
@@ -103,32 +188,25 @@ class WrongScreen extends State<Wrong> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          children: <Widget> [
-            Container(
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    child: getImgProHarryPotter(),
-                  ),
-                  Container(
-                    child: textInforBook(),
-                  )
-                ],
-              ),
-            ),
+      body: Column(
+        children: <Widget> [
+          Expanded(
+            flex: 3,
+            child: _renderHeaderScreen(),
+          ),
 
-            Container(
-              child: Column(
-                children: <Widget>[
-                  textWrong(),
-                ],
-              ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              padding: EdgeInsets.only(top: 20),
+              child: _showTextWrong(),
             ),
-            buttonRetry(),
-          ],
-        ),
+          ),
+
+          Expanded(
+            child: _showButtonRetry(),
+          ),
+        ],
       ),
     );
   }
